@@ -5,7 +5,9 @@ import { useSideMenu } from "@/stores/side-menu";
 
 const { menus } = useSideMenu();
 const isPagesMenuOpen = ref(false);
-function togglePagesMenu(): void {
+const sameMenu = ref<number>();
+function togglePagesMenu(index: number): void {
+  sameMenu.value = index;
   isPagesMenuOpen.value = !isPagesMenuOpen.value;
 }
 </script>
@@ -32,7 +34,7 @@ function togglePagesMenu(): void {
         </li>
       </ul>
       <ul>
-        <template v-for="menu in menus">
+        <template v-for="(menu, index) in menus">
           <li
             class="relative px-6 py-3"
             v-if="!menu.hasOwnProperty('isDropdown')"
@@ -46,11 +48,11 @@ function togglePagesMenu(): void {
           <li class="relative px-6 py-3" v-else>
             <button
               class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-              @click="togglePagesMenu"
+              @click="togglePagesMenu(index)"
               aria-haspopup="true"
             >
               <span class="inline-flex items-center">
-    <font-awesome-icon icon="fa-solid fa-users"/>
+                <font-awesome-icon icon="fa-solid fa-users" />
 
                 <span class="ml-4">{{ menu.menu_name }}</span>
               </span>
@@ -68,7 +70,7 @@ function togglePagesMenu(): void {
               </svg>
             </button>
             <Transition>
-              <template v-if="isPagesMenuOpen">
+              <template v-if="sameMenu == index">
                 <ul
                   class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                   aria-label="submenu"
