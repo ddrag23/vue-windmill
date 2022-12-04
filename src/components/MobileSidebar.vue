@@ -42,7 +42,7 @@ function togglePagesMenu(): void {
 
             <!-- Add this classes to an active anchor (a tag) -->
             <!-- text-gray-800 dark:text-gray-100 -->
-            <MenuItem link="/dashboard" menuName="Dashboard" />
+            <MenuItem link="dashboard" menuName="Dashboard" />
           </li>
         </ul>
         <ul>
