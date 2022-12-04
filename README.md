@@ -1,6 +1,6 @@
 # vue-windmill
 
-This template should help get you started developing with Vue 3 in Vite.
+This Vue Windmill building with Vue 3 in Vite and this theme i took from [Windmill Dashboard](https://github.com/estevanmaito/windmill-dashboard), thanks for your theme [@estevanmaito](https://github.com/estevanmaito)
 
 ## Recommended IDE Setup
 
