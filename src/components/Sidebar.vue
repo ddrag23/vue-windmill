@@ -77,21 +77,23 @@ function togglePagesMenu(): void {
                 ></path>
               </svg>
             </button>
-            <template v-if="isPagesMenuOpen">
-              <ul
-                class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
-                aria-label="submenu"
-              >
-                <li
-                  class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  v-for="subMenu in menu.sub_menu"
+            <Transition>
+              <template v-if="isPagesMenuOpen">
+                <ul
+                  class="p-2 mt-2 space-y-2 overflow-hidden text-sm font-medium text-gray-500 rounded-md shadow-inner bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
+                  aria-label="submenu"
                 >
-                  <router-link class="w-full" :to="subMenu.link">{{
-                    subMenu.menu_name
-                  }}</router-link>
-                </li>
-              </ul>
-            </template>
+                  <li
+                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                    v-for="subMenu in menu.sub_menu"
+                  >
+                    <router-link class="w-full" :to="subMenu.link">{{
+                      subMenu.menu_name
+                    }}</router-link>
+                  </li>
+                </ul>
+              </template>
+            </Transition>
           </li>
         </template>
       </ul>
@@ -106,3 +108,15 @@ function togglePagesMenu(): void {
     </div>
   </aside>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
